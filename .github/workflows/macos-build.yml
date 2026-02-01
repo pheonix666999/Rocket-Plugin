@@ -24,21 +24,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Ensure JUCE sources exist
+      - name: Checkout JUCE (8.0.12)
         shell: bash
         run: |
           set -euo pipefail
-
-          # Preferred location in this repo (as used by existing projects)
-          if [[ -f "The Rocket/JUCE_SRC/CMakeLists.txt" ]]; then
-            echo "Found JUCE at The Rocket/JUCE_SRC"
-            exit 0
-          fi
-
-          echo "JUCE sources not found at The Rocket/JUCE_SRC."
-          echo "Add JUCE sources (recommended: vendor or git submodule) or update this workflow to clone JUCE."
-          exit 1
+          rm -rf juce
+          git clone --depth 1 --branch 8.0.12 https://github.com/juce-framework/JUCE.git juce
+          test -f juce/CMakeLists.txt
 
       - name: Configure (${{ matrix.project.name }} / internal=${{ matrix.internal_ui }})
         shell: bash
@@ -46,6 +41,7 @@ jobs:
           set -euo pipefail
           BUILD_DIR="build_macos/${{ matrix.project.slug }}/internal_${{ matrix.internal_ui }}"
           cmake -S "${{ matrix.project.dir }}" -B "${BUILD_DIR}" \
+            -DJUCE_DIR="${GITHUB_WORKSPACE}/juce" \
             -DROCKET_INTERNAL_UI="${{ matrix.internal_ui }}" \
             -DROCKET_ENABLE_AAX=OFF
 
@@ -98,4 +94,3 @@ jobs:
           name: "${{ matrix.project.slug }}-macos-${{ matrix.internal_ui }}"
           path: "artifacts/${{ matrix.project.slug }}/internal_${{ matrix.internal_ui }}/*.zip"
           if-no-files-found: error
-
