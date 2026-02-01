@@ -1,0 +1,101 @@
+name: macOS - Build AU/VST3
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+
+jobs:
+  build-macos:
+    runs-on: macos-14
+    strategy:
+      fail-fast: false
+      matrix:
+        project:
+          - name: "The Rocket"
+            dir: "The Rocket"
+            slug: "the-rocket"
+          - name: "RocketRemake"
+            dir: "RocketRemake"
+            slug: "rocket-remake"
+        internal_ui: [ "OFF", "ON" ]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Ensure JUCE sources exist
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # Preferred location in this repo (as used by existing projects)
+          if [[ -f "The Rocket/JUCE_SRC/CMakeLists.txt" ]]; then
+            echo "Found JUCE at The Rocket/JUCE_SRC"
+            exit 0
+          fi
+
+          echo "JUCE sources not found at The Rocket/JUCE_SRC."
+          echo "Add JUCE sources (recommended: vendor or git submodule) or update this workflow to clone JUCE."
+          exit 1
+
+      - name: Configure (${{ matrix.project.name }} / internal=${{ matrix.internal_ui }})
+        shell: bash
+        run: |
+          set -euo pipefail
+          BUILD_DIR="build_macos/${{ matrix.project.slug }}/internal_${{ matrix.internal_ui }}"
+          cmake -S "${{ matrix.project.dir }}" -B "${BUILD_DIR}" \
+            -DROCKET_INTERNAL_UI="${{ matrix.internal_ui }}" \
+            -DROCKET_ENABLE_AAX=OFF
+
+      - name: Build AU + VST3 + Standalone
+        shell: bash
+        run: |
+          set -euo pipefail
+          BUILD_DIR="build_macos/${{ matrix.project.slug }}/internal_${{ matrix.internal_ui }}"
+          cmake --build "${BUILD_DIR}" --config Release --target \
+            TheRocket_AU \
+            TheRocket_VST3 \
+            TheRocket_Standalone
+
+      - name: Ad-hoc codesign (bundles)
+        shell: bash
+        run: |
+          set -euo pipefail
+          BUILD_DIR="build_macos/${{ matrix.project.slug }}/internal_${{ matrix.internal_ui }}"
+          AU="${BUILD_DIR}/TheRocket_artefacts/Release/AU/The Rocket.component"
+          VST3="${BUILD_DIR}/TheRocket_artefacts/Release/VST3/The Rocket.vst3"
+
+          if [[ -d "${AU}" ]]; then
+            codesign --force --deep --sign - "${AU}" || true
+          fi
+          if [[ -d "${VST3}" ]]; then
+            codesign --force --deep --sign - "${VST3}" || true
+          fi
+
+      - name: Package artefacts (zip)
+        shell: bash
+        run: |
+          set -euo pipefail
+          BUILD_DIR="build_macos/${{ matrix.project.slug }}/internal_${{ matrix.internal_ui }}"
+          OUT_DIR="artifacts/${{ matrix.project.slug }}/internal_${{ matrix.internal_ui }}"
+          mkdir -p "${OUT_DIR}"
+
+          AU="${BUILD_DIR}/TheRocket_artefacts/Release/AU/The Rocket.component"
+          VST3="${BUILD_DIR}/TheRocket_artefacts/Release/VST3/The Rocket.vst3"
+
+          if [[ -d "${AU}" ]]; then
+            ditto -c -k --sequesterRsrc --keepParent "${AU}" "${OUT_DIR}/TheRocket-macOS-AU-${{ matrix.internal_ui }}.zip"
+          fi
+          if [[ -d "${VST3}" ]]; then
+            ditto -c -k --sequesterRsrc --keepParent "${VST3}" "${OUT_DIR}/TheRocket-macOS-VST3-${{ matrix.internal_ui }}.zip"
+          fi
+
+      - name: Upload artefacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: "${{ matrix.project.slug }}-macos-${{ matrix.internal_ui }}"
+          path: "artifacts/${{ matrix.project.slug }}/internal_${{ matrix.internal_ui }}/*.zip"
+          if-no-files-found: error
+
