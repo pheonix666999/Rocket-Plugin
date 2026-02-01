@@ -1,0 +1,1 @@
+H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\build_juce\TheRocket_rc_lib.dir\Debug\TheRocket_rc_lib.lib

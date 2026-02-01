@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\build_internal\juce_binarydata_TheRocketAssets\JuceLibraryCode\BinaryData1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\build_internal\juce_binarydata_TheRocketAssets\JuceLibraryCode\BinaryData2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\build_internal\juce_binarydata_TheRocketAssets\JuceLibraryCode\BinaryData3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\build_internal\juce_binarydata_TheRocketAssets\JuceLibraryCode\BinaryData4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\build_internal\juce_binarydata_TheRocketAssets\JuceLibraryCode\BinaryData5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\build_internal\juce_binarydata_TheRocketAssets\JuceLibraryCode\BinaryData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\build_internal\CMakeFiles\cd77862e2c7aeddbc1f91e96848d4b6b\BinaryData1.cpp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{AED2F100-6EE5-3C51-AC35-38D1DDB6B57E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{60778918-068D-3D1C-AE08-B5696745B0C0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{B15832C6-63B6-318A-87FC-F3D4F2FACB02}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\build_juce\x64\Debug\ZERO_CHECK</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\build_juce\TheRocket_artefacts\Debug\Standalone\The Rocket.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\build_juce\Debug\TheRocket_vst3_helper.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\build_juce\TheRocket_artefacts\Debug\VST3\The Rocket.vst3\Contents\x86_64-win\The Rocket.vst3</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\build_juce\x64\Debug\ALL_BUILD</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles />
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>

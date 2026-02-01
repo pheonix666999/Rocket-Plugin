@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\build_internal\CMakeFiles\d938bc6f5a7471ca9b2c693efd357b7a\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{AED2F100-6EE5-3C51-AC35-38D1DDB6B57E}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

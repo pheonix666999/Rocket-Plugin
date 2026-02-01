@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\build_check3\CMakeFiles\f54054d05db4c5646f72a38d6abc9986\TheRocket_resources.rc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\build_check3\TheRocket_artefacts\JuceLibraryCode\TheRocket_resources.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{2E7E7EDA-32FA-3533-A3D5-6621D24A4EA8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{6D280E73-9AB5-327A-BF95-29F90B769759}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,74 @@
+name: Build The Rocket Plugin
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build_windows:
+    name: Build Windows (VST3, Standalone)
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+    
+    - name: Install JUCE Framework
+      shell: bash
+      run: |
+        git clone https://github.com/juce-framework/JUCE.git --depth 1 --branch 7.0.9 ${{ github.workspace }}/JUCE
+        
+    - name: Configure CMake
+      # Pass JUCE_DIR explicitly to override the local path lookup
+      run: cmake -S . -B build_win -G "Visual Studio 17 2022" -A x64 -DJUCE_DIR="${{ github.workspace }}\JUCE"
+      
+    - name: Build Release
+      run: cmake --build build_win --config Release --parallel 4
+      
+    - name: Prepare Artifacts
+      shell: bash
+      run: |
+        mkdir -p dist/Windows
+        cp -r build_win/TheRocket_artefacts/Release/VST3/*.vst3 dist/Windows/ 2>/dev/null || :
+        cp -r build_win/TheRocket_artefacts/Release/Standalone/*.exe dist/Windows/ 2>/dev/null || :
+      
+    - name: Upload Windows Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: TheRocket-Windows
+        path: dist/Windows
+
+  build_macos:
+    name: Build macOS (AU, VST3, Standalone)
+    runs-on: macos-latest
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+      
+    - name: Install JUCE Framework
+      run: |
+        git clone https://github.com/juce-framework/JUCE.git --depth 1 --branch 7.0.9 ${{ github.workspace }}/JUCE
+        
+    - name: Configure CMake
+      # Build Universal Binary (Intel + Apple Silicon)
+      run: cmake -S . -B build_mac -G Xcode -DJUCE_DIR="${{ github.workspace }}/JUCE" -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"
+      
+    - name: Build Release
+      run: cmake --build build_mac --config Release --parallel 4
+      
+    - name: Prepare Artifacts
+      run: |
+        mkdir -p dist/macOS
+        cp -R build_mac/TheRocket_artefacts/Release/VST3/*.vst3 dist/macOS/ 2>/dev/null || :
+        cp -R build_mac/TheRocket_artefacts/Release/AU/*.component dist/macOS/ 2>/dev/null || :
+        cp -R build_mac/TheRocket_artefacts/Release/Standalone/*.app dist/macOS/ 2>/dev/null || :
+        
+    - name: Upload macOS Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: TheRocket-macOS
+        path: dist/macOS

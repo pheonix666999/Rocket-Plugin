@@ -1,0 +1,108 @@
+cmake_minimum_required(VERSION 3.15)
+project(TheRocket VERSION 1.0.0)
+
+# Set JUCE_DIR to your JUCE root or add as subdirectory.
+# Example: cmake -DJUCE_DIR=/path/to/JUCE ..
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# JUCE can be provided in a few ways:
+# - JUCE_DIR set to an external JUCE checkout
+# - JUCE subfolder containing JUCE sources
+# - JUCE_SRC subfolder containing JUCE sources (common when JUCE/ is an uninitialized submodule)
+if (DEFINED JUCE_DIR)
+  add_subdirectory(${JUCE_DIR} JUCE)
+elseif (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/JUCE/CMakeLists.txt")
+  add_subdirectory(JUCE)
+elseif (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/JUCE_SRC/CMakeLists.txt")
+  add_subdirectory(JUCE_SRC JUCE)
+else()
+  message(FATAL_ERROR "JUCE not found. Set JUCE_DIR or add JUCE/JUCE_SRC folder.")
+endif()
+
+set(ROCKET_FORMATS AU VST3 Standalone)
+
+# Enable AAX if SDK present and you want it
+option(ROCKET_ENABLE_AAX "Enable AAX format" OFF)
+if (ROCKET_ENABLE_AAX)
+  list(APPEND ROCKET_FORMATS AAX)
+endif()
+
+# Build-time flag for the internal preset designer UI (hidden in public builds)
+option(ROCKET_INTERNAL_UI "Show internal preset designer UI" OFF)
+
+juce_add_plugin(TheRocket
+  COMPANY_NAME "Rocket Audio"
+  IS_SYNTH FALSE
+  NEEDS_MIDI_INPUT FALSE
+  NEEDS_MIDI_OUTPUT FALSE
+  IS_MIDI_EFFECT FALSE
+  COPY_PLUGIN_AFTER_BUILD FALSE
+  BUNDLE_ID "com.rocketaudio.TheRocket"
+  PLUGIN_MANUFACTURER_CODE RktA
+  PLUGIN_CODE Rckt
+  FORMATS ${ROCKET_FORMATS}
+  PRODUCT_NAME "The Rocket"
+)
+
+juce_generate_juce_header(TheRocket)
+
+# Add sources
+set(SOURCE_FILES
+  Source/Main.cpp
+  Source/PluginProcessor.cpp
+  Source/PluginProcessor.h
+  Source/PluginEditor.cpp
+  Source/PluginEditor.h
+  Source/DSP/FxModule.h
+  Source/DSP/FxChain.h
+  Source/DSP/FxChain.cpp
+  Source/DSP/Modules.cpp
+  Source/DSP/Modules.h
+  Source/DSP/ModMatrix.h
+  Source/DSP/ModMatrix.cpp
+  Source/DSP/PresetManager.h
+  Source/DSP/PresetManager.cpp
+)
+
+source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/Source FILES ${SOURCE_FILES})
+
+target_sources(TheRocket PRIVATE ${SOURCE_FILES})
+
+target_compile_definitions(TheRocket
+  PUBLIC
+    JUCE_WEB_BROWSER=0
+    JUCE_USE_CURL=0
+    JUCE_VST3_CAN_REPLACE_VST2=0
+    JUCE_USE_CUSTOM_PLUGIN_STANDALONE_APP=1
+)
+
+if (ROCKET_INTERNAL_UI)
+  target_compile_definitions(TheRocket PUBLIC ROCKET_INTERNAL_UI=1)
+endif()
+
+target_link_libraries(TheRocket
+  PRIVATE
+    juce::juce_audio_utils
+    juce::juce_audio_processors
+    juce::juce_dsp
+  PUBLIC
+    juce::juce_recommended_config_flags
+    juce::juce_recommended_lto_flags
+    juce::juce_recommended_warning_flags
+)
+
+# UI assets (from provided .pkg)
+juce_add_binary_data(TheRocketAssets SOURCES
+  Assets/ui_background.png
+  Assets/ui_clouds.png
+  Assets/ui_panel.png
+  Assets/ui_rocket.png
+  Assets/ui_flame.png
+)
+
+target_link_libraries(TheRocket
+  PRIVATE
+    TheRocketAssets
+)

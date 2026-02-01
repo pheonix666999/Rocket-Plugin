@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\Source\Main.cpp" />
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\Source\PluginProcessor.cpp" />
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\Source\PluginEditor.cpp" />
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\Source\DSP\FxChain.cpp">
+      <Filter>DSP</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\Source\DSP\Modules.cpp">
+      <Filter>DSP</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\Source\DSP\ModMatrix.cpp">
+      <Filter>DSP</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\Source\DSP\PresetManager.cpp">
+      <Filter>DSP</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\JUCE_SRC\modules\juce_audio_processors\juce_audio_processors.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\JUCE_SRC\modules\juce_gui_extra\juce_gui_extra.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\JUCE_SRC\modules\juce_gui_basics\juce_gui_basics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\JUCE_SRC\modules\juce_graphics\juce_graphics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\JUCE_SRC\modules\juce_graphics\juce_graphics_Harfbuzz.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\JUCE_SRC\modules\juce_graphics\juce_graphics_Sheenbidi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\JUCE_SRC\modules\juce_events\juce_events.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\JUCE_SRC\modules\juce_core\juce_core.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\JUCE_SRC\modules\juce_core\juce_core_CompilationTime.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\JUCE_SRC\modules\juce_data_structures\juce_data_structures.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\JUCE_SRC\modules\juce_audio_processors_headless\juce_audio_processors_headless.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\JUCE_SRC\modules\juce_audio_processors_headless\juce_audio_processors_headless_ara.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\JUCE_SRC\modules\juce_audio_processors_headless\juce_audio_processors_headless_lv2_libs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\JUCE_SRC\modules\juce_audio_basics\juce_audio_basics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\JUCE_SRC\modules\juce_audio_utils\juce_audio_utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\JUCE_SRC\modules\juce_audio_formats\juce_audio_formats.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\JUCE_SRC\modules\juce_audio_devices\juce_audio_devices.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\JUCE_SRC\modules\juce_dsp\juce_dsp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\build_juce\TheRocket_artefacts\JuceLibraryCode\JuceHeader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\Source\PluginProcessor.h" />
+    <ClInclude Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\Source\PluginEditor.h" />
+    <ClInclude Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\Source\DSP\FxModule.h">
+      <Filter>DSP</Filter>
+    </ClInclude>
+    <ClInclude Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\Source\DSP\FxChain.h">
+      <Filter>DSP</Filter>
+    </ClInclude>
+    <ClInclude Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\Source\DSP\Modules.h">
+      <Filter>DSP</Filter>
+    </ClInclude>
+    <ClInclude Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\Source\DSP\ModMatrix.h">
+      <Filter>DSP</Filter>
+    </ClInclude>
+    <ClInclude Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\Source\DSP\PresetManager.h">
+      <Filter>DSP</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\build_juce\CMakeFiles\4a515ff54f58ecb07be50754037fdc96\JuceHeader.h.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{0E5B05DD-C859-396C-8724-4405616A57F5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DSP">
+      <UniqueIdentifier>{C89A06AD-D1E8-3526-BE14-8FFCF2A29703}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{99292C96-765F-3372-A93E-ED5E84AC0B6C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{9B81BBC8-3639-3474-A901-F4DC17F46044}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

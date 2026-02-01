@@ -1,0 +1,77 @@
+# OS Files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDEs & Editors
+.vscode/
+.idea/
+*.sln
+*.vcxproj
+*.vcxproj.user
+*.xcodeproj/
+*.xcworkspace/
+.vs/
+
+# Build Directories
+build/
+build_win/
+build_win_internal/
+build_mac/
+build_mac_internal/
+cmake-build-*/
+out/
+dist/
+Binaries/
+Intermediate/
+DerivedData/
+
+# JUCE
+JUCE/
+**/JUCE/
+JuceLibraryCode/
+
+# Virtual Environments
+.venv/
+venv/
+env/
+
+# Artifacts & Temporary Files
+*.exe
+*.vst3
+*.component
+*.app
+*.lib
+*.obj
+*.pdb
+*.exp
+*.ilk
+*.idb
+*.tlog
+*.log
+CMakeCache.txt
+CMakeFiles/
+*.cmake
+build_log.txt
+
+# Large Resource/Analysis Files (Project Specific)
+analysis/
+analysis_demo_xml/
+analysis_au_binary_strings.txt
+analysis_video_frames/
+analysis_video__frames/
+pkg_extract/
+pkg_payload/
+pkg_ui_extract/
+packaging/
+
+# Binary Media/Installers
+*.zip
+*.pkg
+*.mp4
+*.mov
+*.wav
+*.mp3
+
+# Word Temporary Files
+~$*

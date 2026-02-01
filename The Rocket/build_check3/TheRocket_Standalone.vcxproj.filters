@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\JUCE_SRC\modules\juce_audio_plugin_client\juce_audio_plugin_client_AAX.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\JUCE_SRC\modules\juce_audio_plugin_client\juce_audio_plugin_client_AAX_utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\JUCE_SRC\modules\juce_audio_plugin_client\juce_audio_plugin_client_ARA.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\JUCE_SRC\modules\juce_audio_plugin_client\juce_audio_plugin_client_LV2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\JUCE_SRC\modules\juce_audio_plugin_client\juce_audio_plugin_client_Standalone.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\JUCE_SRC\modules\juce_audio_plugin_client\juce_audio_plugin_client_Unity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\JUCE_SRC\modules\juce_audio_plugin_client\juce_audio_plugin_client_VST2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\JUCE_SRC\modules\juce_audio_plugin_client\juce_audio_plugin_client_VST3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="H:\PROJECTS\Fiverr\Rocket Plugin\The Rocket\build_check3\TheRocket_rc_lib.dir\$(Configuration)\TheRocket_resources.res">
+      <Filter>Object Libraries</Filter>
+    </Object>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Object Libraries">
+      <UniqueIdentifier>{3F7047B5-89C8-31B7-975A-A06EE944D4F2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{6D280E73-9AB5-327A-BF95-29F90B769759}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
