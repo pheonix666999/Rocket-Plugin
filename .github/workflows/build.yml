@@ -16,18 +16,27 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
     
-    - name: Install JUCE Framework
-      shell: bash
-      run: |
-        git clone https://github.com/juce-framework/JUCE.git --depth 1 --branch 7.0.9 ${{ github.workspace }}/JUCE
+    - name: Checkout JUCE (8.0.12)
+      uses: actions/checkout@v4
+      with:
+        repository: juce-framework/JUCE
+        ref: 8.0.12
+        path: JUCE
+        fetch-depth: 1
         
     - name: Configure CMake
       # Build in RocketRemake/build_win, Source in RocketRemake
       # Pass JUCE_DIR explicitly
-      run: cmake -S RocketRemake -B RocketRemake/build_win -G "Visual Studio 17 2022" -A x64 -DJUCE_DIR="${{ github.workspace }}\JUCE"
+      shell: pwsh
+      run: |
+        $juce = Join-Path $env:GITHUB_WORKSPACE 'JUCE'
+        if (!(Test-Path $juce)) { throw "JUCE folder missing at $juce" }
+        cmake -S RocketRemake -B RocketRemake/build_win -G "Visual Studio 17 2022" -A x64 -DJUCE_DIR="$juce"
       
     - name: Build Release
-      run: cmake --build RocketRemake/build_win --config Release --parallel 4
+      shell: pwsh
+      run: |
+        cmake --build RocketRemake/build_win --config Release --target TheRocket_VST3 TheRocket_Standalone --parallel 4
       
     - name: Prepare Artifacts
       shell: bash
@@ -50,16 +59,20 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
       
-    - name: Install JUCE Framework
-      run: |
-        git clone https://github.com/juce-framework/JUCE.git --depth 1 --branch 7.0.9 ${{ github.workspace }}/JUCE
+    - name: Checkout JUCE (8.0.12)
+      uses: actions/checkout@v4
+      with:
+        repository: juce-framework/JUCE
+        ref: 8.0.12
+        path: JUCE
+        fetch-depth: 1
         
     - name: Configure CMake
       # Build Universal Binary (Intel + Apple Silicon)
       run: cmake -S RocketRemake -B RocketRemake/build_mac -G Xcode -DJUCE_DIR="${{ github.workspace }}/JUCE" -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"
       
     - name: Build Release
-      run: cmake --build RocketRemake/build_mac --config Release --parallel 4
+      run: cmake --build RocketRemake/build_mac --config Release --target TheRocket_AU TheRocket_VST3 TheRocket_Standalone --parallel 4
       
     - name: Prepare Artifacts
       run: |
