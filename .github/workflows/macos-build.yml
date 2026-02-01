@@ -41,7 +41,9 @@ jobs:
           set -euo pipefail
           BUILD_DIR="build_macos/${{ matrix.project.slug }}/internal_${{ matrix.internal_ui }}"
           cmake -S "${{ matrix.project.dir }}" -B "${BUILD_DIR}" \
+            -G Ninja \
             -DJUCE_DIR="${GITHUB_WORKSPACE}/juce" \
+            -DCMAKE_BUILD_TYPE=Release \
             -DROCKET_INTERNAL_UI="${{ matrix.internal_ui }}" \
             -DROCKET_ENABLE_AAX=OFF
 
@@ -50,7 +52,7 @@ jobs:
         run: |
           set -euo pipefail
           BUILD_DIR="build_macos/${{ matrix.project.slug }}/internal_${{ matrix.internal_ui }}"
-          cmake --build "${BUILD_DIR}" --config Release --target \
+          cmake --build "${BUILD_DIR}" --target \
             TheRocket_AU \
             TheRocket_VST3 \
             TheRocket_Standalone
@@ -60,8 +62,13 @@ jobs:
         run: |
           set -euo pipefail
           BUILD_DIR="build_macos/${{ matrix.project.slug }}/internal_${{ matrix.internal_ui }}"
-          AU="${BUILD_DIR}/TheRocket_artefacts/Release/AU/The Rocket.component"
-          VST3="${BUILD_DIR}/TheRocket_artefacts/Release/VST3/The Rocket.vst3"
+          ARTEFACTS="${BUILD_DIR}/TheRocket_artefacts"
+          if [[ -d "${BUILD_DIR}/TheRocket_artefacts/Release" ]]; then
+            ARTEFACTS="${BUILD_DIR}/TheRocket_artefacts/Release"
+          fi
+
+          AU="${ARTEFACTS}/AU/The Rocket.component"
+          VST3="${ARTEFACTS}/VST3/The Rocket.vst3"
 
           if [[ -d "${AU}" ]]; then
             codesign --force --deep --sign - "${AU}" || true
@@ -78,14 +85,30 @@ jobs:
           OUT_DIR="artifacts/${{ matrix.project.slug }}/internal_${{ matrix.internal_ui }}"
           mkdir -p "${OUT_DIR}"
 
-          AU="${BUILD_DIR}/TheRocket_artefacts/Release/AU/The Rocket.component"
-          VST3="${BUILD_DIR}/TheRocket_artefacts/Release/VST3/The Rocket.vst3"
+          ARTEFACTS="${BUILD_DIR}/TheRocket_artefacts"
+          if [[ -d "${BUILD_DIR}/TheRocket_artefacts/Release" ]]; then
+            ARTEFACTS="${BUILD_DIR}/TheRocket_artefacts/Release"
+          fi
+
+          AU="${ARTEFACTS}/AU/The Rocket.component"
+          VST3="${ARTEFACTS}/VST3/The Rocket.vst3"
+
+          wrote_any=0
 
           if [[ -d "${AU}" ]]; then
             ditto -c -k --sequesterRsrc --keepParent "${AU}" "${OUT_DIR}/TheRocket-macOS-AU-${{ matrix.internal_ui }}.zip"
+            wrote_any=1
           fi
           if [[ -d "${VST3}" ]]; then
             ditto -c -k --sequesterRsrc --keepParent "${VST3}" "${OUT_DIR}/TheRocket-macOS-VST3-${{ matrix.internal_ui }}.zip"
+            wrote_any=1
+          fi
+
+          if [[ "${wrote_any}" -ne 1 ]]; then
+            echo "No AU/VST3 bundles found to package."
+            echo "Looked in: ${ARTEFACTS}"
+            find "${BUILD_DIR}/TheRocket_artefacts" -maxdepth 4 -type d || true
+            exit 1
           fi
 
       - name: Upload artefacts
